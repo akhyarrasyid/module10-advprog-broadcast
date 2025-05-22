@@ -19,3 +19,10 @@ di balik gambar ini, saya mensimulasikan merubah  port client pada `ClientBuilde
 
 ![First](image/case-port-sama.png)
 Nah disini, jika ingin tetap bekerja, maka websocket port untuk server tepatnya di `TcpListener::bind` harus diubah dari port 2000 ke port 8080 juga agar dapat mengirimkan pesan ke port yang sama dengan server. Dengan demikian, pengiriman dan penerimaan pesan tetap berjalan secara lancar dan akan baik-baik saja seperti sebelumnya.
+
+
+### Experiment 2.3: Small changes, add IP and Port
+
+![Fourth](image/small-changes.png)
+
+Di balik gambar di atas, saya mencoba mengubah beberapa pesan yang dikirim dan diterima antara server dengan client. Detailnya, saya menambahkan informasi pengirim untuk setiap klien, termasuk alamat IP dan port mereka dengan menerapkan formatting pada `bcast_tx.send(text.into())?;` menjadi `bcast_tx.send(format!("{addr:?}: {text:?}"))?;` di file `server.rs`.
